@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launch Pack Generator</title>
+    <meta
+      name="description"
+      content="Generate LinkedIn Live and StreamYard launch packs with titles, descriptions, hashtags, thumbnail prompts, and thumbnail images."
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="backdrop backdrop-a"></div>
+    <div class="backdrop backdrop-b"></div>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">LinkedIn Live / StreamYard</p>
+          <h1>Make the launch pack fast. Keep it sharp.</h1>
+          <p class="lede">
+            Turn a rough idea into a title, description, hashtags, thumbnail prompt, and a real thumbnail image.
+          </p>
+        </div>
+        <div class="status-card">
+          <div class="status-dot" id="statusDot"></div>
+          <div>
+            <p class="status-label">Status</p>
+            <p class="status-value" id="statusText">Ready when you are.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <form class="input-panel" id="generatorForm">
+          <label>
+            <span>Main idea</span>
+            <textarea
+              id="idea"
+              name="idea"
+              rows="8"
+              placeholder="Drop in a rough topic, a brain dump, or a direct event idea..."
+              required
+            ></textarea>
+          </label>
+
+          <div class="grid-two">
+            <label>
+              <span>Optional brand prefix</span>
+              <input id="prefix" name="prefix" type="text" placeholder="e.g. Liam Gallegos Live" />
+            </label>
+
+            <label>
+              <span>Tone</span>
+              <select id="tone" name="tone">
+                <option value="sharp">Sharp</option>
+                <option value="promotional">Promotional</option>
+                <option value="confident">Confident</option>
+                <option value="energetic">Energetic</option>
+                <option value="executive">Executive</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            <span>Platform mode</span>
+            <select id="platform" name="platform">
+              <option value="LinkedIn Live / StreamYard">LinkedIn Live / StreamYard</option>
+              <option value="LinkedIn Live">LinkedIn Live</option>
+              <option value="StreamYard">StreamYard</option>
+            </select>
+          </label>
+
+          <div class="button-row">
+            <button type="button" class="ghost" data-action="title">Generate Title</button>
+            <button type="button" class="ghost" data-action="description">Generate Description + Hashtags</button>
+            <button type="button" class="ghost" data-action="thumbnail-prompt">Generate Thumbnail Prompt</button>
+            <button type="button" class="primary" data-action="thumbnail">Generate Thumbnail</button>
+          </div>
+
+          <p class="hint">
+            The thumbnail will use a secure server-side OpenAI call. If image generation fails, the prompt still comes back.
+          </p>
+        </form>
+
+        <aside class="output-panel">
+          <article class="output-card">
+            <div class="card-head">
+              <h2>Title</h2>
+              <span class="badge" id="titleCount">0 / 75</span>
+            </div>
+            <textarea id="titleOutput" readonly placeholder="Your title will land here."></textarea>
+          </article>
+
+          <article class="output-card">
+            <div class="card-head">
+              <h2>Description</h2>
+            </div>
+            <textarea id="descriptionOutput" readonly placeholder="Description output."></textarea>
+          </article>
+
+          <article class="output-card">
+            <div class="card-head">
+              <h2>Hashtags</h2>
+            </div>
+            <textarea id="hashtagsOutput" readonly placeholder="Hashtags output."></textarea>
+          </article>
+
+          <article class="output-card">
+            <div class="card-head">
+              <h2>Thumbnail Prompt</h2>
+            </div>
+            <textarea id="thumbnailPromptOutput" readonly placeholder="Thumbnail prompt output."></textarea>
+          </article>
+
+          <article class="output-card thumbnail-card">
+            <div class="card-head">
+              <h2>Thumbnail Preview</h2>
+              <a id="downloadLink" class="download-link" href="#" download="thumbnail.png" hidden>Download PNG</a>
+            </div>
+            <div class="thumbnail-preview" id="thumbnailPreview">
+              <p>Image preview will appear here.</p>
+            </div>
+            <p class="fallback-note" id="thumbnailNote" hidden></p>
+          </article>
+        </aside>
+      </section>
+    </main>
+
+    <template id="previewTemplate">
+      <img alt="Generated thumbnail preview" />
+    </template>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
