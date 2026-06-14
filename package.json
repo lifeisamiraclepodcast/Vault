@@ -1,0 +1,14 @@
+{
+  "name": "linkedin-live-launch-pack-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "LinkedIn Live / StreamYard launch pack generator with secure OpenAI-backed generation.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "openai": "^5.9.0"
+  }
+}
